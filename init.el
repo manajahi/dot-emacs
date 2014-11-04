@@ -1,8 +1,11 @@
+;; run server if necessary and if called from emacsclient
+(require 'server)
+(unless (server-running-p) (server-start))
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add .emacs.d to path
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/custom_lisp")
-
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Early load of packages and add melpa
@@ -201,7 +204,6 @@
 ;; keybindings.el contains keybindings
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "keybindings.el")
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun 24 17:45:17 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Mon Oct 27 14:12:08 2014 (+0100)
+;; Last-Updated: Tue Nov  4 19:11:45 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 54
+;;     Update #: 57
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -34,15 +34,17 @@
 
 (require 'color-theme-solarized)
 (load-theme 'solarized-dark t)
-;(color-theme-high-contrast)
 
-;; The code that must be added here should take into
-;; account each frame in particular
-;; cutomization to run if running in a graphic environment
-;; (unless (display-graphic-p)
-;;   (enable-theme (quote (wheatgrass)))
-;;   )
+;; temporarily solves the problem of the background in solarized
+(custom-set-faces (if (not window-system) '(default ((t (:background nil))))))
 
+;; to load the theme for each new frame
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+	      '(lambda (f)
+		 (with-selected-frame f
+		   (when (window-system f) (color-theme-solarized-dark)))))
+  (color-theme-solarized-dark))
 
 ;; (set-face-attribute 'default nil :font "DejaVu Sans Mono")
 
@@ -79,5 +81,6 @@
   (define-key function-key-map "\e[1;3D" '[M-left])
   (xterm-register-default-colors)
   )
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; look.el ends here
