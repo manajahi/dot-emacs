@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:53:49 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Sun Oct 26 19:49:05 2014 (+0100)
+;; Last-Updated: Tue Nov  4 17:29:45 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 15
+;;     Update #: 16
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -120,5 +120,7 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
+;; To tune match paren to show the matched area
+(setq show-paren-style 'mixed)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; global_configurations.el ends here

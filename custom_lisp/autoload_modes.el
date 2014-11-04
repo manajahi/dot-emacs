@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:26:26 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Mon Oct 27 12:48:52 2014 (+0100)
+;; Last-Updated: Tue Nov  4 17:39:47 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 69
+;;     Update #: 70
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -43,7 +43,10 @@
 (ido-ubiquitous-mode)
 
 ;;;; --------------- to color parenthesis with appropriate depth ---------
-(global-rainbow-delimiters-mode)
+;; The global function was deprecated
+;(global-rainbow-delimiters-mode)
+(dolist (hook '(text-mode-hook prog-mode-hook))
+  (add-hook hook #'rainbow-delimiters-mode))
 
 ;;;; --------------- to print the current function in the modeline -------
 (which-function-mode)

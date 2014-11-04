@@ -104,7 +104,6 @@
     git-rebase-mode                     ; Mode for git rebase -i
     git-timemachine                     ; Go back in (Git) time
     ;; Utilities
-    projectile                          ; Project interaction
     google-this                         ; Google from Emacs
     paradox                             ; Better package menu
     )
