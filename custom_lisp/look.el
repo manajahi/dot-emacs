@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun 24 17:45:17 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Tue Nov  4 19:11:45 2014 (+0100)
+;; Last-Updated: Wed Nov  5 18:19:01 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 57
+;;     Update #: 61
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -36,15 +36,16 @@
 (load-theme 'solarized-dark t)
 
 ;; temporarily solves the problem of the background in solarized
-(custom-set-faces (if (not window-system) '(default ((t (:background nil))))))
+;(custom-set-faces (if (not window-system) '(default ((t (:background nil))))))
+;(custom-set-faces '(default ((t (:background nil)))))
 
 ;; to load the theme for each new frame
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-	      '(lambda (f)
-		 (with-selected-frame f
-		   (when (window-system f) (color-theme-solarized-dark)))))
-  (color-theme-solarized-dark))
+;; (if (daemonp)
+;;     (add-hook 'after-make-frame-functions
+;; 	      '(lambda (f)
+;; 		 (with-selected-frame f
+;; 		   (when (window-system f) (color-theme-solarized-dark)))))
+;;   (color-theme-solarized-dark))
 
 ;; (set-face-attribute 'default nil :font "DejaVu Sans Mono")
 
