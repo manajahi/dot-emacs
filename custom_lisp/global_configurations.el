@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:53:49 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Tue Nov  4 17:29:45 2014 (+0100)
+;; Last-Updated: Thu Nov 20 20:37:56 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 16
+;;     Update #: 17
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -27,6 +27,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Code:
+
+;; replace yes-no questions by y-n questions
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Allows scroll to move to top or bottom when it hits it
 (setq scroll-error-top-bottom t)

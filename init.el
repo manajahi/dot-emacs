@@ -211,9 +211,17 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-save-query nil)
- '(TeX-view-program-selection (quote ((engine-omega "dvips and gv") ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "Evince") (output-html "xdg-open"))))
+ '(TeX-view-program-selection
+   (quote
+    ((engine-omega "dvips and gv")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Evince")
+     (output-html "xdg-open"))))
  '(gnuserv-program "/usr/lib/xemacs-21.0/i386-pc-linux/gnuserv")
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(virtualenv-root "/home/amine/Documents/tests/django/Firstblog/"))
 ;;;; --------------------- Printer options  ---------------------------
 ;;(setq lpr-switches '("-w80"))
 (setq ps-printer-name "copieur_dali")
@@ -233,5 +241,4 @@
  '(minibuffer-prompt ((t (:foreground "cyan"))))
  '(org-document-title ((t (:foreground "cyan" :weight bold))))
  '(show-paren-match ((((class color) (background light)) (:background "red"))))
- '(which-func ((t (:foreground "magenta" :underline nil))))
- )
+ '(which-func ((t (:foreground "magenta" :underline nil)))))

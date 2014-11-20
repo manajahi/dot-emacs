@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:28:25 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Sun Oct 19 14:42:09 2014 (+0200)
+;; Last-Updated: Thu Nov 20 17:20:37 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 33
+;;     Update #: 34
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -103,5 +103,8 @@
 (global-set-key (kbd "C-y") (lambda (n)
 			      (interactive "p")
 			      (dotimes (i (abs n)) (yank))))
+
+;; rgrep
+(global-set-key (kbd "<f2>") 'rgrep)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; shortcuts.el ends here

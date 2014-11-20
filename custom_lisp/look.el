@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun 24 17:45:17 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Wed Nov  5 18:19:01 2014 (+0100)
+;; Last-Updated: Mon Nov 10 16:35:15 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 61
+;;     Update #: 63
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -36,7 +36,7 @@
 (load-theme 'solarized-dark t)
 
 ;; temporarily solves the problem of the background in solarized
-;(custom-set-faces (if (not window-system) '(default ((t (:background nil))))))
+(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
 ;(custom-set-faces '(default ((t (:background nil)))))
 
 ;; to load the theme for each new frame
