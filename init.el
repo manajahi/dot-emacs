@@ -123,6 +123,32 @@
 
 (mohaminaj-ensure-packages)
 
+(defun mohaminaj-uniquify-list (l)
+  (let ((res ()))
+    (dolist (el l)
+      (when (not (memq el res))
+	  (push el res)
+	  ))
+    res))
+
+(defun mohaminaj-sync-packages (file-path)
+  (with-temp-buffer
+    (find-file (concat user-emacs-directory file-path))
+    (let* ((packs (ignore-errors (read (current-buffer))))
+	   (new (mohaminaj-uniquify-list (append packs package-activated-list)))
+	   )
+      (progn
+	(dolist (p new)
+	  (unless (package-installed-p p)
+	    (package-install p)
+	    ))
+	(erase-buffer)
+	(insert (format "%S" (sort new #'(lambda (x y) (string< (symbol-name x) (symbol-name y))))))))
+    (save-buffer)
+    (kill-buffer)))
+
+(mohaminaj-sync-packages "packs.el")
+
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; load global look of emacs
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
