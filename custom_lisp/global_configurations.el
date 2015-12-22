@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:53:49 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Thu Nov 20 20:37:56 2014 (+0100)
+;; Last-Updated: Tue May  5 10:54:28 2015 (+0200)
 ;;           By: amine najahi
-;;     Update #: 17
+;;     Update #: 18
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -125,5 +125,9 @@
 
 ;; To tune match paren to show the matched area
 (setq show-paren-style 'mixed)
+
+
+;; Stuff for ace-window mode to jump quickly
+(setq avi-keys '(?q ?s ?d ?f ?g ?h ?j ?k ?l ?m))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; global_configurations.el ends here

@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Fri Feb  1 10:34:52 2013 (+0100)
 ;; Version: 
-;; Last-Updated: Wed Sep 17 12:15:03 2014 (+0200)
+;; Last-Updated: Sat Nov 29 13:46:49 2014 (+0100)
 ;;           By: amine najahi
-;;     Update #: 104
+;;     Update #: 105
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -162,6 +162,16 @@
             (setq answer (+ (expt 10 field-width) answer)))
           (replace-match (format (concat "%0" (int-to-string field-width) "d")
                                  answer)))))))
+
+(defun mohaminaj-isearch-yank-symbol ()
+    "Yank the symbol at point into the isearch minibuffer."
+    (interactive)
+    (isearch-yank-string
+     (save-excursion
+       (when (and (not isearch-forward)
+		  isearch-other-end)
+	 (goto-char isearch-other-end))
+            (thing-at-point 'symbol))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; my_functions.el ends here
 

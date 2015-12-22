@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:42:38 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Sun Oct 19 22:38:59 2014 (+0200)
+;; Last-Updated: Wed Mar 11 02:57:36 2015 (+0100)
 ;;           By: amine najahi
-;;     Update #: 20
+;;     Update #: 22
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -52,6 +52,11 @@
 
 ;; print a todo in tex
 (define-key TeX-mode-map (kbd "C-c t") 'print_todo)
+
+;; avoid indenting tikzpictures
+;(add-to-list 'LaTeX-indent-environment-list '("tikzpicture"))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; auctex_config.el ends here

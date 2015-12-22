@@ -6,13 +6,20 @@
 ;; Add .emacs.d to path
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/custom_lisp")
-
+(add-to-list 'load-path "~/.emacs.d/sollya-mode")
+(load "inf-sollya.el")
+(load "sollya.el")
+(add-to-list 'load-path "~/.emacs.d/gappa-mode")
+(load "gappa-mode.el")
+(load "gappa-out.el")
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Early load of packages and add melpa
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
+(package-initialize nil)
+(setq package-enable-at-startup nil)
+
 (defconst mohaminaj-packages
   '(
     ;; Color theme
@@ -109,45 +116,115 @@
     ;; Utilities
     google-this                         ; Google from Emacs
     paradox                             ; Better package menu
+    use-package
     )
   "Packages needed by my configuration. Hijacked from lunaryon.")
 
-(defun mohaminaj-ensure-packages ()
-  "Install all required packages."
-  (interactive)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (dolist (package mohaminaj-packages)
-    (unless (package-installed-p package)
-      (package-install package))))
+;; (defun mohaminaj-ensure-packages ()
+;;   "Install all required packages."
+;;   (interactive)
+;;   (unless package-archive-contents
+;;     (package-refresh-contents))
+;;   (dolist (package mohaminaj-packages)
+;;     (unless (package-installed-p package)
+;;       (package-install package))))
 
-(mohaminaj-ensure-packages)
+;; (mohaminaj-ensure-packages)
 
-(defun mohaminaj-uniquify-list (l)
-  (let ((res ()))
-    (dolist (el l)
-      (when (not (memq el res))
-	  (push el res)
-	  ))
-    res))
+;; (defun mohaminaj-uniquify-list (l)
+;;   (let ((res ()))
+;;     (dolist (el l)
+;;       (when (not (memq el res))
+;; 	  (push el res)
+;; 	  ))
+;;     res))
 
-(defun mohaminaj-sync-packages (file-path)
-  (with-temp-buffer
-    (find-file (concat user-emacs-directory file-path))
-    (let* ((packs (ignore-errors (read (current-buffer))))
-	   (new (mohaminaj-uniquify-list (append packs package-activated-list)))
-	   )
-      (progn
-	(dolist (p new)
-	  (unless (package-installed-p p)
-	    (package-install p)
-	    ))
-	(erase-buffer)
-	(insert (format "%S" (sort new #'(lambda (x y) (string< (symbol-name x) (symbol-name y))))))))
-    (save-buffer)
-    (kill-buffer)))
+;; (defun mohaminaj-sync-packages (file-path)
+;;   (with-temp-buffer
+;;     (find-file (concat user-emacs-directory file-path))
+;;     (let* ((packs (ignore-errors (read (current-buffer))))
+;; 	   (new (mohaminaj-uniquify-list (append packs package-activated-list)))
+;; 	   )
+;;       (progn
+;; 	(dolist (p new)
+;; 	  (unless (package-installed-p p)
+;; 	    (package-install p)
+;; 	    ))
+;; 	(erase-buffer)
+;; 	(insert (format "%S" (sort new #'(lambda (x y) (string< (symbol-name x) (symbol-name y))))))))
+;;     (save-buffer)
+;;     (kill-buffer)))
 
-(mohaminaj-sync-packages "packs.el")
+;; (mohaminaj-sync-packages "packs.el")
+
+;;;;;;;;;;;;;;;;;;;
+;; Personal info ;;
+;;;;;;;;;;;;;;;;;;;
+(setq user-full-name "Mohamed Amine Najahi"
+      user-mail-address "mohaminaj@gmail.com")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Early loading of use-package ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(setq use-package-verbose t)
+(require 'use-package)
+
+;; (use-package auto-compile
+;;   :ensure t
+;;   :init (auto-compile-on-load-mode))
+;; (setq load-prefer-newer t)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Initialize helm	       ;;
+;; config hijacked from sachac ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package helm
+  :ensure t
+  :diminish helm-mode
+  :init
+  (progn
+    (require 'helm-config)
+    (setq helm-candidate-number-limit 100)
+    ;; From https://gist.github.com/antifuchs/9238468
+    (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
+          helm-input-idle-delay 0.01  ; this actually updates things
+                                        ; reeeelatively quickly.
+          helm-yas-display-key-on-candidate t
+          helm-quick-update t
+          helm-M-x-requires-pattern nil
+          helm-ff-skip-boring-files t)
+    (helm-mode))
+  :bind (("C-c h" . helm-mini)
+         ("C-h a" . helm-apropos)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x b" . helm-buffers-list)
+         ("M-y" . helm-show-kill-ring)
+         ("M-x" . helm-M-x)
+	 ("C-x C-m" . helm-M-x)
+         ("C-x c o" . helm-occur)
+         ("C-x c s" . helm-swoop)
+         ("C-x c y" . helm-yas-complete)
+         ("C-x c Y" . helm-yas-create-snippet-on-region)
+         ("C-x c b" . my/helm-do-grep-book-notes)
+         ("C-x c SPC" . helm-all-mark-rings)))
+(ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
+
+
+(require 'guide-key)
+(setq guide-key/guide-key-sequence '("C-x" "C-x r" "C-c" "C-x"))
+(guide-key-mode 1) ; Enable guide-key-mode
+
+;; (use-package powerline
+;;     :config
+;;   (setq powerline-display-buffer-size nil)
+;;   (setq powerline-display-mule-info nil)
+;;   (setq powerline-display-hud nil)
+;;   (when (display-graphic-p)
+;;     (powerline-default-theme)))
+
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; load global look of emacs
@@ -268,3 +345,5 @@
  '(org-document-title ((t (:foreground "cyan" :weight bold))))
  '(show-paren-match ((((class color) (background light)) (:background "red"))))
  '(which-func ((t (:foreground "magenta" :underline nil)))))
+
+

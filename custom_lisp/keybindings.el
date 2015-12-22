@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:28:25 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Thu Nov 20 17:20:37 2014 (+0100)
-;;           By: amine najahi
-;;     Update #: 34
+;; Last-Updated: Thu Jun 25 17:16:19 2015 (+0200)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 38
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -70,17 +70,17 @@
 (global-set-key (kbd "C-c v") 'revert-buffer)
 
 ;; To replace M-x when needed
-(global-set-key (kbd "M-x") (if (commandp 'smex)
-				'smex
-			      'execute-extended-command))
+;; (global-set-key (kbd "M-x") (if (commandp 'smex)
+;; 				'smex
+;; 			      'execute-extended-command))
 
-(global-set-key (kbd "C-x C-m") (if (commandp 'smex)
-				    'smex
-				  'execute-extended-command))
+;; (global-set-key (kbd "C-x C-m") (if (commandp 'smex)
+;; 				    'smex
+;; 				  'execute-extended-command))
 
-(global-set-key (kbd "C-c C-m") (if (commandp 'smex)
-				    'smex
-				  'execute-extended-command))
+;; (global-set-key (kbd "C-c C-m") (if (commandp 'smex)
+;; 				    'smex
+;; 				  'execute-extended-command))
 
 ;; To search regexp forward and backward
 (global-set-key (kbd "M-s") 'isearch-forward-regexp)
@@ -96,7 +96,7 @@
 (global-set-key (kbd "C-c k") 'close-and-kill-next-pane)
 
 ;; kill buffer of this window and close it
-(global-set-key (kbd "C-c C-k") 'close-and-kill-this-pane)
+(global-set-key (kbd "C-x C-k") 'close-and-kill-this-pane)
 
 ;; This makes the argument to yank the count of the number of times
 ;; to yank
@@ -106,5 +106,13 @@
 
 ;; rgrep
 (global-set-key (kbd "<f2>") 'rgrep)
+
+;; to search word at point
+(define-key isearch-mode-map (kbd "C-d")
+  'mohaminaj-isearch-yank-symbol)
+
+;; to use ace-window
+(global-set-key (kbd "M-s") #'avi-goto-word-1)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; shortcuts.el ends here

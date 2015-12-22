@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:26:26 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Tue Nov  4 17:39:47 2014 (+0100)
-;;           By: amine najahi
-;;     Update #: 70
+;; Last-Updated: Thu Jun 25 17:15:43 2015 (+0200)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 72
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -32,15 +32,18 @@
 ;(icomplete-mode 1)
 
 ;;;; -------------------  ido mode for completion       ------------------
-(ido-mode 1)
+;; (ido-mode 1)
 
 ;;;; --------------- to initialize smex (goes with ido)  -----------------
-(smex-initialize)
+;; (smex-initialize)
 
 ;; Is ido-ubiquitous a replacement for smex ??
-(require 'ido-ubiquitous)
-(ido-everywhere)
-(ido-ubiquitous-mode)
+;; (require 'ido-ubiquitous)
+;; (ido-everywhere)
+;; (ido-ubiquitous-mode)
+
+;; ace-window
+(require 'ace-window)
 
 ;;;; --------------- to color parenthesis with appropriate depth ---------
 ;; The global function was deprecated

@@ -1,0 +1,262 @@
+##
+## File automatically generated on Wed Oct 22 01:25:39 2014
+##   by CGPE (Code Generation for Polynomial Evaluation)
+## Contact: grevy@users.gforge.inria.fr
+## 
+## Scheme : ((((b2*u2)>>4)+((((b0*u0)>>6)+(a1*y1))+(((a2*y2)+((((b3*u3)>>3)+(((b1*u1)>>1)+(a3*y3)))>>2))>>1)))<<2)
+## 
+## Problem: dot product of two size-7 vectors
+## Latency: 12 (expected: 9)
+## 
+##
+
+## Coefficients and variables definition
+b0 = fixed<-35,dn>(0x65718e3bp-35);
+b1 = fixed<-33,dn>(0x4c152aadp-33);
+b2 = fixed<-33,dn>(0x4c152aadp-33);
+b3 = fixed<-35,dn>(0x65718e3bp-35);
+a1 = fixed<-29,dn>(0x252e6d93p-29);
+a2 = fixed<-28,dn>(-0x0b2294dfp-28);
+a3 = fixed<-33,dn>(0x4688a637p-33);
+
+u0 = fixed<-27,dn>(var0);
+u1 = fixed<-27,dn>(var1);
+u2 = fixed<-27,dn>(var2);
+u3 = fixed<-27,dn>(var3);
+y1 = fixed<-26,dn>(var4);
+y2 = fixed<-26,dn>(var5);
+y3 = fixed<-26,dn>(var6);
+
+
+## Evaluation scheme
+r0  fixed<-28,dn>= b2 * u2;            Mr0  = b2 * Mu2;                     ## (+) Q[  4. 28]
+r1  = fixed<-24,dn>(r0);               Mr1  = Mr0;                          ## (+) Q[  8. 24] --> alignment shift of 4 bits right
+r2  fixed<-30,dn>= b0 * u0;            Mr2  = b0 * Mu0;                     ## (+) Q[  2. 30]
+r3  = fixed<-24,dn>(r2);               Mr3  = Mr2;                          ## (+) Q[  8. 24] --> alignment shift of 6 bits right
+r4  fixed<-24,dn>= a1 * y1;            Mr4  = a1 * My1;                     ## (+) Q[  8. 24]
+r5  fixed<-24,dn>= r3 + r4;            Mr5  = Mr3 + Mr4;                    ## (+) Q[  8. 24]
+r6  fixed<-25,dn>= a2 * y2;            Mr6  = a2 * My2;                     ## (+) Q[  7. 25]
+r7  fixed<-30,dn>= b3 * u3;            Mr7  = b3 * Mu3;                     ## (+) Q[  2. 30]
+r8  = fixed<-27,dn>(r7);               Mr8  = Mr7;                          ## (+) Q[  5. 27] --> alignment shift of 3 bits right
+r9  fixed<-28,dn>= b1 * u1;            Mr9  = b1 * Mu1;                     ## (+) Q[  4. 28]
+r10 = fixed<-27,dn>(r9);               Mr10 = Mr9;                          ## (+) Q[  5. 27] --> alignment shift of 1 bits right
+r11 fixed<-27,dn>= a3 * y3;            Mr11 = a3 * My3;                     ## (+) Q[  5. 27]
+r12 fixed<-27,dn>= r10 + r11;          Mr12 = Mr10 + Mr11;                  ## (+) Q[  5. 27]
+r13 fixed<-27,dn>= r8 + r12;           Mr13 = Mr8 + Mr12;                   ## (+) Q[  5. 27]
+r14 = fixed<-25,dn>(r13);              Mr14 = Mr13;                         ## (+) Q[  7. 25] --> alignment shift of 2 bits right
+r15 fixed<-25,dn>= r6 + r14;           Mr15 = Mr6 + Mr14;                   ## (+) Q[  7. 25]
+r16 = fixed<-24,dn>(r15);              Mr16 = Mr15;                         ## (+) Q[  8. 24] --> alignment shift of 1 bits right
+r17 fixed<-24,dn>= r5 + r16;           Mr17 = Mr5 + Mr16;                   ## (+) Q[  8. 24]
+r18 fixed<-24,dn>= r1 + r17;           Mr18 = Mr1 + Mr17;                   ## (+) Q[  8. 24]
+r19 = fixed<-24,dn>(r18);              Mr19 = Mr18;                         ## (+) Q[  6. 24] --> alignment shift of 2 bits left
+
+## Results
+{
+  (
+       var0 in [-0x7c000000p-27,0x7c000000p-27]
+    /\ u0 - Mu0 in [0,0] 
+    /\ var1 in [-0x7c000000p-27,0x7c000000p-27]
+    /\ u1 - Mu1 in [0,0] 
+    /\ var2 in [-0x7c000000p-27,0x7c000000p-27]
+    /\ u2 - Mu2 in [0,0] 
+    /\ var3 in [-0x7c000000p-27,0x7c000000p-27]
+    /\ u3 - Mu3 in [0,0] 
+    /\ var4 in [-0x4e16e97bp-26,0x4e16e97bp-26]
+    /\ y1 - My1 in [0,0] 
+    /\ var5 in [-0x4e16e97bp-26,0x4e16e97bp-26]
+    /\ y2 - My2 in [0,0] 
+    /\ var6 in [-0x4e16e97bp-26,0x4e16e97bp-26]
+    /\ y3 - My3 in [0,0] 
+    ## Constraints
+    ->
+       r0 in [-154570795b-26,154570795b-26]
+    /\ r0 - Mr0 in [-4294967295b-60,0]
+    /\ r1 in [-38642699b-24,38642699b-24]
+    /\ r1 - Mr1 in [-68719476735b-60,0]
+    /\ r2 in [-824377573b-30,824377573b-30]
+    /\ r2 - Mr2 in [-4294967295b-62,0]
+    /\ r3 in [-3220225b-22,3220225b-22]
+    /\ r3 - Mr3 in [-274877906943b-62,0]
+    /\ r4 in [-380564115b-24,380564115b-24]
+    /\ r4 - Mr4 in [-2147483647b-55,0]
+    /\ r5 in [-393445015b-24,393445015b-24]
+    /\ r5 - Mr5 in [-549755813759b-62,0]
+    /\ r6 in [-455885797b-25,455885797b-25]
+    /\ r6 - Mr6 in [-536870911b-54,0]
+    /\ r7 in [-824377573b-30,824377573b-30]
+    /\ r7 - Mr7 in [-4294967295b-62,0]
+    /\ r8 in [-103047197b-27,103047197b-27]
+    /\ r8 - Mr8 in [-34359738367b-62,0]
+    /\ r9 in [-154570795b-26,154570795b-26]
+    /\ r9 - Mr9 in [-4294967295b-60,0]
+    /\ r10 in [-154570795b-26,154570795b-26]
+    /\ r10 - Mr10 in [-8589934591b-60,0]
+    /\ r11 in [-45121111b-24,45121111b-24]
+    /\ r11 - Mr11 in [-4294967295b-59,0]
+    /\ r12 in [-335055239b-26,335055239b-26]
+    /\ r12 - Mr12 in [-17179869181b-60,0]
+    /\ r13 in [-773157675b-27,773157675b-27]
+    /\ r13 - Mr13 in [-103079215091b-62,0]
+    /\ r14 in [-193289419b-25,193289419b-25]
+    /\ r14 - Mr14 in [-206158430195b-62,0]
+    /\ r15 in [-40573451b-21,40573451b-21]
+    /\ r15 - Mr15 in [-343597383411b-62,0]
+    /\ r16 in [-40573451b-21,40573451b-21]
+    /\ r16 - Mr16 in [-481036336883b-62,0]
+    /\ r17 in [-718032623b-24,718032623b-24]
+    /\ r17 - Mr17 in [-515396075321b-61,0]
+    /\ r18 in [-378337661b-23,378337661b-23]
+    /\ r18 - Mr18 in [-652835028791b-61,0]
+    /\ r19 in [-378337661b-23,378337661b-23]
+    /\ r19 - Mr19 in [-652835028791b-61,0]
+  )
+}
+
+## Hints
+r0$var0; r0 - Mr0$var0;
+r1$var0; r1 - Mr1$var0;
+r2$var0; r2 - Mr2$var0;
+r3$var0; r3 - Mr3$var0;
+r4$var0; r4 - Mr4$var0;
+r5$var0; r5 - Mr5$var0;
+r6$var0; r6 - Mr6$var0;
+r7$var0; r7 - Mr7$var0;
+r8$var0; r8 - Mr8$var0;
+r9$var0; r9 - Mr9$var0;
+r10$var0; r10 - Mr10$var0;
+r11$var0; r11 - Mr11$var0;
+r12$var0; r12 - Mr12$var0;
+r13$var0; r13 - Mr13$var0;
+r14$var0; r14 - Mr14$var0;
+r15$var0; r15 - Mr15$var0;
+r16$var0; r16 - Mr16$var0;
+r17$var0; r17 - Mr17$var0;
+r18$var0; r18 - Mr18$var0;
+r19$var0; r19 - Mr19$var0;
+|r19 - Mr19| - CertifiedBound $var0;
+r0$var1; r0 - Mr0$var1;
+r1$var1; r1 - Mr1$var1;
+r2$var1; r2 - Mr2$var1;
+r3$var1; r3 - Mr3$var1;
+r4$var1; r4 - Mr4$var1;
+r5$var1; r5 - Mr5$var1;
+r6$var1; r6 - Mr6$var1;
+r7$var1; r7 - Mr7$var1;
+r8$var1; r8 - Mr8$var1;
+r9$var1; r9 - Mr9$var1;
+r10$var1; r10 - Mr10$var1;
+r11$var1; r11 - Mr11$var1;
+r12$var1; r12 - Mr12$var1;
+r13$var1; r13 - Mr13$var1;
+r14$var1; r14 - Mr14$var1;
+r15$var1; r15 - Mr15$var1;
+r16$var1; r16 - Mr16$var1;
+r17$var1; r17 - Mr17$var1;
+r18$var1; r18 - Mr18$var1;
+r19$var1; r19 - Mr19$var1;
+|r19 - Mr19| - CertifiedBound $var1;
+r0$var2; r0 - Mr0$var2;
+r1$var2; r1 - Mr1$var2;
+r2$var2; r2 - Mr2$var2;
+r3$var2; r3 - Mr3$var2;
+r4$var2; r4 - Mr4$var2;
+r5$var2; r5 - Mr5$var2;
+r6$var2; r6 - Mr6$var2;
+r7$var2; r7 - Mr7$var2;
+r8$var2; r8 - Mr8$var2;
+r9$var2; r9 - Mr9$var2;
+r10$var2; r10 - Mr10$var2;
+r11$var2; r11 - Mr11$var2;
+r12$var2; r12 - Mr12$var2;
+r13$var2; r13 - Mr13$var2;
+r14$var2; r14 - Mr14$var2;
+r15$var2; r15 - Mr15$var2;
+r16$var2; r16 - Mr16$var2;
+r17$var2; r17 - Mr17$var2;
+r18$var2; r18 - Mr18$var2;
+r19$var2; r19 - Mr19$var2;
+|r19 - Mr19| - CertifiedBound $var2;
+r0$var3; r0 - Mr0$var3;
+r1$var3; r1 - Mr1$var3;
+r2$var3; r2 - Mr2$var3;
+r3$var3; r3 - Mr3$var3;
+r4$var3; r4 - Mr4$var3;
+r5$var3; r5 - Mr5$var3;
+r6$var3; r6 - Mr6$var3;
+r7$var3; r7 - Mr7$var3;
+r8$var3; r8 - Mr8$var3;
+r9$var3; r9 - Mr9$var3;
+r10$var3; r10 - Mr10$var3;
+r11$var3; r11 - Mr11$var3;
+r12$var3; r12 - Mr12$var3;
+r13$var3; r13 - Mr13$var3;
+r14$var3; r14 - Mr14$var3;
+r15$var3; r15 - Mr15$var3;
+r16$var3; r16 - Mr16$var3;
+r17$var3; r17 - Mr17$var3;
+r18$var3; r18 - Mr18$var3;
+r19$var3; r19 - Mr19$var3;
+|r19 - Mr19| - CertifiedBound $var3;
+r0$var4; r0 - Mr0$var4;
+r1$var4; r1 - Mr1$var4;
+r2$var4; r2 - Mr2$var4;
+r3$var4; r3 - Mr3$var4;
+r4$var4; r4 - Mr4$var4;
+r5$var4; r5 - Mr5$var4;
+r6$var4; r6 - Mr6$var4;
+r7$var4; r7 - Mr7$var4;
+r8$var4; r8 - Mr8$var4;
+r9$var4; r9 - Mr9$var4;
+r10$var4; r10 - Mr10$var4;
+r11$var4; r11 - Mr11$var4;
+r12$var4; r12 - Mr12$var4;
+r13$var4; r13 - Mr13$var4;
+r14$var4; r14 - Mr14$var4;
+r15$var4; r15 - Mr15$var4;
+r16$var4; r16 - Mr16$var4;
+r17$var4; r17 - Mr17$var4;
+r18$var4; r18 - Mr18$var4;
+r19$var4; r19 - Mr19$var4;
+|r19 - Mr19| - CertifiedBound $var4;
+r0$var5; r0 - Mr0$var5;
+r1$var5; r1 - Mr1$var5;
+r2$var5; r2 - Mr2$var5;
+r3$var5; r3 - Mr3$var5;
+r4$var5; r4 - Mr4$var5;
+r5$var5; r5 - Mr5$var5;
+r6$var5; r6 - Mr6$var5;
+r7$var5; r7 - Mr7$var5;
+r8$var5; r8 - Mr8$var5;
+r9$var5; r9 - Mr9$var5;
+r10$var5; r10 - Mr10$var5;
+r11$var5; r11 - Mr11$var5;
+r12$var5; r12 - Mr12$var5;
+r13$var5; r13 - Mr13$var5;
+r14$var5; r14 - Mr14$var5;
+r15$var5; r15 - Mr15$var5;
+r16$var5; r16 - Mr16$var5;
+r17$var5; r17 - Mr17$var5;
+r18$var5; r18 - Mr18$var5;
+r19$var5; r19 - Mr19$var5;
+|r19 - Mr19| - CertifiedBound $var5;
+r0$var6; r0 - Mr0$var6;
+r1$var6; r1 - Mr1$var6;
+r2$var6; r2 - Mr2$var6;
+r3$var6; r3 - Mr3$var6;
+r4$var6; r4 - Mr4$var6;
+r5$var6; r5 - Mr5$var6;
+r6$var6; r6 - Mr6$var6;
+r7$var6; r7 - Mr7$var6;
+r8$var6; r8 - Mr8$var6;
+r9$var6; r9 - Mr9$var6;
+r10$var6; r10 - Mr10$var6;
+r11$var6; r11 - Mr11$var6;
+r12$var6; r12 - Mr12$var6;
+r13$var6; r13 - Mr13$var6;
+r14$var6; r14 - Mr14$var6;
+r15$var6; r15 - Mr15$var6;
+r16$var6; r16 - Mr16$var6;
+r17$var6; r17 - Mr17$var6;
+r18$var6; r18 - Mr18$var6;
+r19$var6; r19 - Mr19$var6;
+|r19 - Mr19| - CertifiedBound $var6;
