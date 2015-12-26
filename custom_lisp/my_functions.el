@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Fri Feb  1 10:34:52 2013 (+0100)
 ;; Version: 
-;; Last-Updated: Sat Nov 29 13:46:49 2014 (+0100)
-;;           By: amine najahi
-;;     Update #: 105
+;; Last-Updated: Sat Dec 26 03:19:22 2015 (+0100)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 107
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -92,21 +92,6 @@
   (kill-line 0)
   )
 
-;; Completion in the minibuffer
-;; (defun my-replace-string ()
-;;   (interactive)
-;;   (setq ac-search-in-minibuffer t)
-;;   (call-interactively 'replace-string)
-;;   (setq ac-search-in-minibuffer nil)
-;;   )
-
-;; (defun my-clear-completion ()
-;;   (setq ac-search-in-minibuffer nil)
-;;   )
-
-;; (my-clear-completion)
-;; (add-hook 'minibuffer-exit-hook 'my-clear-completion)
-
 ;; Kill and close other window
 (defun close-and-kill-next-pane ()
   "If there are multiple windows, then close the other pane and kill the buffer in it also."
@@ -172,6 +157,15 @@
 		  isearch-other-end)
 	 (goto-char isearch-other-end))
             (thing-at-point 'symbol))))
+
+(defun fd-switch-dictionary()
+  (interactive)
+  (let* ((dic ispell-current-dictionary)
+    	 (change (if (string= dic "english") "french" "english")))
+    (ispell-change-dictionary change)
+    (message "Dictionary switched from %s to %s" dic change)
+    ))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; my_functions.el ends here
 

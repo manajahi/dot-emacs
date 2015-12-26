@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:28:25 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Thu Jun 25 17:16:19 2015 (+0200)
+;; Last-Updated: Sat Dec 26 03:57:11 2015 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 38
+;;     Update #: 43
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -69,28 +69,12 @@
 ;; To jump to a file pointed to by the current text
 (global-set-key (kbd "C-c v") 'revert-buffer)
 
-;; To replace M-x when needed
-;; (global-set-key (kbd "M-x") (if (commandp 'smex)
-;; 				'smex
-;; 			      'execute-extended-command))
-
-;; (global-set-key (kbd "C-x C-m") (if (commandp 'smex)
-;; 				    'smex
-;; 				  'execute-extended-command))
-
-;; (global-set-key (kbd "C-c C-m") (if (commandp 'smex)
-;; 				    'smex
-;; 				  'execute-extended-command))
-
 ;; To search regexp forward and backward
-(global-set-key (kbd "M-s") 'isearch-forward-regexp)
-(global-set-key (kbd "M-r") 'isearch-backward-regexp)
+;; (global-set-key (kbd "M-s") 'isearch-forward-regexp)
+;; (global-set-key (kbd "M-r") 'isearch-backward-regexp)
 
 ;; To apply previously recorded macro
 (global-set-key [f5] 'call-last-kbd-macro)
-
-;; switch to ERC
-(global-set-key (kbd "C-c m") 'erc-start-or-switch)
 
 ;; kill buffer of next window and close it
 (global-set-key (kbd "C-c k") 'close-and-kill-next-pane)
@@ -110,9 +94,6 @@
 ;; to search word at point
 (define-key isearch-mode-map (kbd "C-d")
   'mohaminaj-isearch-yank-symbol)
-
-;; to use ace-window
-(global-set-key (kbd "M-s") #'avi-goto-word-1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; shortcuts.el ends here

@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:53:49 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Tue May  5 10:54:28 2015 (+0200)
-;;           By: amine najahi
-;;     Update #: 18
+;; Last-Updated: Fri Dec 25 16:09:00 2015 (+0100)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 21
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -93,22 +93,9 @@
 
 ;; match parenthesis
 (show-paren-mode 1)
-;; (defadvice show-paren-function
-;;   (after show-matching-paren-offscreen activate)
-;;   "If the matching paren is offscreen, show the matching line in the
-;;         echo area. Has no effect if the character before point is not of
-;;         the syntax class ')'."
-;;   (interactive)
-;;   (if (not (minibuffer-prompt))
-;;       (let ((matching-text nil))
-;; 	;; Only call `blink-matching-open' if the character before point
-;; 	;; is a close parentheses type character. Otherwise, there's not
-;; 	;; really any point, and `blink-matching-open' would just echo
-;; 	;; "Mismatched parentheses", which gets really annoying.
-;; 	(if (char-equal (char-syntax (char-before (point))) ?\))
-;; 	    (setq matching-text (blink-matching-open)))
-;; 	(if (not (null matching-text))
-;; 	    (message matching-text)))))
+
+;; To tune match paren to show the matched area
+(setq show-paren-style 'mixed)
 
 ;; backup files creation is done in a unique directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -123,11 +110,22 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
 
-;; To tune match paren to show the matched area
-(setq show-paren-style 'mixed)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; --------------- to print the current function in the modeline ------- ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(which-function-mode)
+;; -- put the function name in a header line
+(setq-default header-line-format
+              '((which-func-mode ("" which-func-format " "))))
+;; We remove Which Function Mode from the mode line, because it's mostly invisible here anyway.
+(setq mode-line-misc-info
+      (assq-delete-all 'which-func-mode mode-line-misc-info))
+;; better to print n/a when the function is unknown
+(setq which-func-unknown "n/a")
 
 
-;; Stuff for ace-window mode to jump quickly
-(setq avi-keys '(?q ?s ?d ?f ?g ?h ?j ?k ?l ?m))
+;;;; --------------- to print the current function in the modeline -------
+(yas-global-mode 1)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; global_configurations.el ends here

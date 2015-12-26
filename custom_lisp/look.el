@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun 24 17:45:17 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Mon Nov 10 16:35:15 2014 (+0100)
-;;           By: amine najahi
-;;     Update #: 63
+;; Last-Updated: Fri Dec 25 15:30:48 2015 (+0100)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 65
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -28,43 +28,28 @@
 ;; 
 ;;; Code:
 
-;; Set the graphical theme to a high contrast
-(require 'color-theme)
-(color-theme-initialize)
 
-(require 'color-theme-solarized)
-(load-theme 'solarized-dark t)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set the graphical theme to a high contrast solarize ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package color-theme
+  :init
+  (color-theme-initialize)
+  ;; Turn off the menu bar at startup
+  (menu-bar-mode -1)
 
-;; temporarily solves the problem of the background in solarized
-(custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
-;(custom-set-faces '(default ((t (:background nil)))))
+  ;; Turn off the tool mode at startup
+  (tool-bar-mode -1) 
 
-;; to load the theme for each new frame
-;; (if (daemonp)
-;;     (add-hook 'after-make-frame-functions
-;; 	      '(lambda (f)
-;; 		 (with-selected-frame f
-;; 		   (when (window-system f) (color-theme-solarized-dark)))))
-;;   (color-theme-solarized-dark))
-
-;; (set-face-attribute 'default nil :font "DejaVu Sans Mono")
-
-;; Turn off the menu bar at startup
-(menu-bar-mode -1)
-
-;; Turn off the tool mode at startup
-(tool-bar-mode -1) 
-
-;; Turn off the sroll bar at startup
-(scroll-bar-mode -1)
-
-;; Small customization of the modeline
-;; (set-face-attribute 'mode-line nil
-;;    :foreground "white"
-;;    :background "blue"
-;;    ;; :overline "green"
-;;    ;; :underline "white"
-;;    )
+  ;; Turn off the sroll bar at startup
+  (scroll-bar-mode -1)
+  :config
+  (use-package color-theme-solarized
+    :config
+    (load-theme 'solarized-dark t)
+    ;; the following temporarily solves the problem of the background in solarized
+    (custom-set-faces (if (not window-system) '(default ((t (:background "nil")))))))
+  )
 
 ;; stuff for using emacs in xterm
 (defun terminal-init-xterm-256color ()
@@ -82,6 +67,14 @@
   (define-key function-key-map "\e[1;3D" '[M-left])
   (xterm-register-default-colors)
   )
+
+;; to load the theme for each new frame
+;; (if (daemonp)
+;;     (add-hook 'after-make-frame-functions
+;; 	      '(lambda (f)
+;; 		 (with-selected-frame f
+;; 		   (when (window-system f) (color-theme-solarized-dark)))))
+;;   (color-theme-solarized-dark))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; look.el ends here

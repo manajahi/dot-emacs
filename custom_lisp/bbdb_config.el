@@ -6,9 +6,9 @@
 ;; Maintainer: amine najahi amine.najahi@univ-perp.fr
 ;; Created: Wed May 28 16:00:44 2014 (+0200)
 ;; Version: 
-;; Last-Updated: Wed Jul 16 21:21:18 2014 (+0200)
-;;           By: amine najahi
-;;     Update #: 17
+;; Last-Updated: Sat Dec 26 03:57:25 2015 (+0100)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 18
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -27,6 +27,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; 
 ;;; Code:
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ----------  Changes gnus init file location inside .emacs.d  --------- ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq gnus-init-file "~/.emacs.d/.gnus")
+(setq gnus-startup-file "~/.emacs.d/.newrc")
+
+
 
 ;; load bbdb
 (setq bbdb-file "~/.emacs.d/my_bbdb")
