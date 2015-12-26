@@ -2,19 +2,19 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
-(add-to-list 'load-path "~/.emacs.d/custom_lisp")
+(mapcar (lambda (dir) (add-to-list 'load-path dir))
+	'("~/.emacs.d/custom_lisp" "~/.emacs.d/sollya-mode" "~/.emacs.d/gappa-mode"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (add-to-list 'load-path "~/.emacs.d/sollya-mode") ;;
 ;; ;;(load "inf-sollya.el")			     ;;
 ;; ;;(load "sollya.el")				     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; (add-to-list 'load-path "~/.emacs.d/gappa-mode") ;;
 ;; ;; (load "gappa-mode.el")			    ;;
 ;; ;; (load "gappa-out.el")			    ;;
+
 ;;;; -------------------  autoload gappa mode-----------------------------
 ;; (add-to-list 'auto-mode-alist '("\\.gappa$" . gappa-mode)) 
 ;; (autoload 'gappa-mode "gappa-mode.el" "Autoloading Gappa major mode" t)
@@ -31,11 +31,8 @@
 
 (defconst mohaminaj-packages
   '(
-    ;; ido-ubiquitous                      ; Use IDO everywhere
-    ;; ido-vertical-mode                   ; Show IDO vertically
-    ;; imenu-anywhere                      ; imenu with IDO and for all buffers
     ace-jump-mode                       ; Fast jump within the buffer
-    ace-window                       ; 
+    ace-window                          ; Fast jump to another window
     anaconda-mode                       ; Documentation, lookup and navigation for Python
     anzu                                ; Mode line indicators for isearch
     auctex                              ; The one and only LaTeX environment
@@ -60,7 +57,7 @@
     google-this                         ; Google from Emacs
     guide-key                           ; Show active keys
     haskell-mode                        ; Haskell major modes
-    helm
+    helm                                ; Completion package
     inf-ruby                            ; Ruby interpreter in Emacs
     macrostep                           ; Interactively expand macros
     magit                               ; Git frontend
@@ -139,10 +136,13 @@
          ("C-x c SPC" . helm-all-mark-rings)))
 (ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
-(use-package anzu)
+;; anzu - number of search matches in modeline
+(use-package anzu
+  :diminish anzu-mode
+  :config
+  (global-anzu-mode))
 
-(use-package ace-jumump-mode
-					;  :defer t
+(use-package ace-jump-mode
   :commands ace-jump-mode
   :init
   (progn
