@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:26:26 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Fri Dec 25 16:18:39 2015 (+0100)
+;; Last-Updated: Tue Dec 29 11:47:17 2015 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 81
+;;     Update #: 83
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -42,8 +42,7 @@
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook             'turn-on-eldoc-mode)
 
-;;;; ----------  hl line highlighting for dired and buffer mode  ---------
-(add-hook 'dired-mode-hook        'hl-line-mode)
+;;;; ----------  hl line highlighting for buffer mode  ---------
 (add-hook 'buffer-menu-mode-hook  'hl-line-mode)
 (add-hook 'gnus-summary-mode-hook 'hl-line-mode)
 (add-hook 'package-menu-mode-hook 'hl-line-mode)

@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:53:49 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Fri Dec 25 16:09:00 2015 (+0100)
+;; Last-Updated: Tue Dec 29 11:47:34 2015 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 21
+;;     Update #: 22
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -81,7 +81,6 @@
 (add-hook 'find-file-hook 'my-mode-line-count-lines)
 (add-hook 'after-save-hook 'my-mode-line-count-lines)
 (add-hook 'after-revert-hook 'my-mode-line-count-lines)
-(add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
 
 ;;;; ---------------- set encoding to utf --------------------------------

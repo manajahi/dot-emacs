@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Fri Feb  1 10:34:52 2013 (+0100)
 ;; Version: 
-;; Last-Updated: Sat Dec 26 03:19:22 2015 (+0100)
+;; Last-Updated: Tue Dec 29 18:09:24 2015 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 107
+;;     Update #: 108
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -166,6 +166,12 @@
     (message "Dictionary switched from %s to %s" dic change)
     ))
 
+;; To quickly jump to my init file
+(defun find-user-init-file ()
+  "Edit the `user-init-file', in another window."
+  (interactive)
+  (find-file-other-window user-init-file))
+(global-set-key (kbd "C-c I") 'find-user-init-file)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; my_functions.el ends here
 

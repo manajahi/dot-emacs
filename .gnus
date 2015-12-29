@@ -6,9 +6,9 @@
 ;; Maintainer: amine najahi amine.najahi@univ-perp.fr
 ;; Created: Thu May 15 19:29:20 2014 (+0200)
 ;; Version: 
-;; Last-Updated: Fri Jul 25 11:10:42 2014 (+0200)
-;;           By: amine najahi
-;;     Update #: 50
+;; Last-Updated: Mon Dec 28 01:13:23 2015 (+0100)
+;;           By: Mohamed Amine Najahi
+;;     Update #: 51
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -28,7 +28,7 @@
 ;; 
 ;;; Code:
 
-(setq auth-sources '("~/.emacs.d/.authinfo.gpg"))
+;(setq auth-sources '("~/.emacs.d/.authinfo.gpg"))
 
 (setq gnus-select-method
 	'(nnimap "univ"

@@ -29,6 +29,9 @@
 (package-initialize)
 (setq package-enable-at-startup nil)
 
+;;; Used to time the initialization process
+;;(require 'benchmark-init)
+
 (defconst mohaminaj-packages
   '(
     ace-jump-mode                       ; Fast jump within the buffer
@@ -37,6 +40,7 @@
     anzu                                ; Mode line indicators for isearch
     auctex                              ; The one and only LaTeX environment
     auctex-latexmk                      ; latexmk support for AUCTeX
+    benchmark-init                      ; get init benchmarks
     browse-kill-ring                    ; Kill ring browser
     cmake-mode                          ; CMake files
     company                             ; Auto completion
@@ -119,6 +123,8 @@
           helm-yas-display-key-on-candidate t
           helm-quick-update t
           helm-M-x-requires-pattern nil
+	  helm-mode-fuzzy-match t ; to enable fuzzy search
+	  helm-completion-in-region-fuzzy-match t ; to enable fuzzy search
           helm-ff-skip-boring-files t)
     (helm-mode))
   :bind (("C-c h" . helm-mini)
@@ -134,7 +140,6 @@
          ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
          ("C-x c SPC" . helm-all-mark-rings)))
-(ido-mode -1) ;; Turn off ido mode in case I enabled it accidentally
 
 ;; anzu - number of search matches in modeline
 (use-package anzu
@@ -225,6 +230,15 @@
 	 (global-set-key (kbd "<f8>")   'fd-switch-dictionary))
   )
 
+
+(use-package dired
+  :init
+  (add-hook 'dired-mode-hook        'hl-line-mode)
+  (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
+  (progn
+    (put 'dired-find-alternate-file 'disabled nil)
+    (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
+  )
 
 
 (use-package emms
@@ -328,6 +342,14 @@
 	(erc-track-switch-buffer 1) ;; yes: switch to last active
       (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
 	(erc :server "irc.freenode.net" :port 6667 :nick "manfoo7" :full-name "man"))))
+  )
+
+(use-package magit
+  :commands magit-status
+  :init
+  (progn
+    (global-set-key (kbd "C-x g") 'magit-status)
+    )
   )
 
 (use-package auctex
