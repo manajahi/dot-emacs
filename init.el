@@ -216,6 +216,10 @@
 	      ))
   )
 
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  )
 
 (use-package auto-complete
   :init
@@ -485,6 +489,8 @@
  '(show-paren-match ((((class color) (background light)) (:background "red"))))
  '(which-func ((t (:foreground "magenta" :underline nil)))))
 
+
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; --------------------- Printer options  --------------------------- ;;
