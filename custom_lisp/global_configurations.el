@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:53:49 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Tue Dec 29 11:47:34 2015 (+0100)
+;; Last-Updated: Thu Jan 14 13:17:17 2016 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 22
+;;     Update #: 23
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -123,8 +123,11 @@
 (setq which-func-unknown "n/a")
 
 
-;;;; --------------- to print the current function in the modeline -------
+;;;; --------------- 
 (yas-global-mode 1)
 
+
+;;;; --------------- To change the frame's name -------
+(setq frame-title-format '(buffer-file-name "%f" ("%b")))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; global_configurations.el ends here
