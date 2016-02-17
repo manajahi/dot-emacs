@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Fri Feb  1 10:34:52 2013 (+0100)
 ;; Version: 
-;; Last-Updated: Tue Dec 29 18:09:24 2015 (+0100)
+;; Last-Updated: Fri Feb 12 14:52:39 2016 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 108
+;;     Update #: 112
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -59,7 +59,7 @@
                           "__"
                           name
                           "__")))
-;      (goto-char (point-min))                                                                                                                                                               
+      ;; (goto-char (return-to))                                                                                                                                      
       (insert upper)
       (goto-char (point-max))
       (insert lower)
@@ -161,7 +161,7 @@
 (defun fd-switch-dictionary()
   (interactive)
   (let* ((dic ispell-current-dictionary)
-    	 (change (if (string= dic "english") "french" "english")))
+    	 (change (if (string= dic "english") "francais" "english")))
     (ispell-change-dictionary change)
     (message "Dictionary switched from %s to %s" dic change)
     ))

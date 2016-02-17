@@ -2,22 +2,22 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
-(mapcar (lambda (dir) (add-to-list 'load-path dir))
+(mapc (lambda (dir) (add-to-list 'load-path dir))
 	'("~/.emacs.d/custom_lisp" "~/.emacs.d/sollya-mode" "~/.emacs.d/gappa-mode"))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;;(load "inf-sollya.el")			     ;;
-;; ;;(load "sollya.el")				     ;;
+(load "inf-sollya.el")			     ;;
+(load "sollya.el")				     ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ;; (load "gappa-mode.el")			    ;;
-;; ;; (load "gappa-out.el")			    ;;
+(load "gappa-mode.el")			    ;;
+(load "gappa-out.el")			    ;;
 
 ;;;; -------------------  autoload gappa mode-----------------------------
-;; (add-to-list 'auto-mode-alist '("\\.gappa$" . gappa-mode)) 
-;; (autoload 'gappa-mode "gappa-mode.el" "Autoloading Gappa major mode" t)
+(add-to-list 'auto-mode-alist '("\\.gappa$" . gappa-mode)) 
+(autoload 'gappa-mode "gappa-mode.el" "Autoloading Gappa major mode" t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -30,7 +30,8 @@
 (setq package-enable-at-startup nil)
 
 ;;; Used to time the initialization process
-;;(require 'benchmark-init)
+(require 'benchmark-init)
+(benchmark-init/activate)
 
 (defconst mohaminaj-packages
   '(
@@ -43,17 +44,17 @@
     benchmark-init                      ; get init benchmarks
     browse-kill-ring                    ; Kill ring browser
     cmake-mode                          ; CMake files
+    color-theme
     company                             ; Auto completion
     company-anaconda                    ; Company integration for Anaconda
     diff-hl                             ; Highlight VCS diffs in the fringe
     easy-kill                           ; Killing and marking on steroids
     elisp-slime-nav                     ; Navigate to symbol definitions
-    flycheck                            ; and syntax errors
+    erc-hl-nicks
+    flycheck			   ; and syntax errors
     flycheck-cask                       ; Cask support for Flycheck
     flycheck-haskell                    ; Improve Haskell syntax checking
     ghci-completion                     ; Complete GHCI commands
-    git-commit-mode                     ; Git commit message mode
-    git-rebase-mode                     ; Mode for git rebase -i
     git-timemachine                     ; Go back in (Git) time
     gitattributes-mode                  ; Git attributes mode
     gitconfig-mode                      ; Git configuration mode
@@ -72,6 +73,7 @@
     paredit                             ; Balanced parenthesis editing
     rainbow-delimiters                  ; Color delimiters by level
     rainbow-mode                        ; Show colours as they are
+    rtags
     solarized-theme                     ; Color theme
     tuareg                              ; OCaml major mode
     use-package                         ; Used to initialize other packages
@@ -115,6 +117,8 @@
   :init
   (progn
     (require 'helm-config)
+    (require 'recentf)
+    (recentf-mode 1)
     (setq helm-candidate-number-limit 100)
     ;; From https://gist.github.com/antifuchs/9238468
     (setq helm-idle-delay 0.0 ; update fast sources immediately (doesn't).
@@ -139,6 +143,7 @@
          ("C-x c y" . helm-yas-complete)
          ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
+	 ("C-x C-r" . helm-recentf)
          ("C-x c SPC" . helm-all-mark-rings)))
 
 ;; anzu - number of search matches in modeline
@@ -323,7 +328,6 @@
 (use-package erc
 
   :init
-  (use-package erc-hl-nicks)
   (setq erc-autojoin-channels-alist
 	'((".*\\.freenode.net" "#emacs" "#haskell" "#lisp")))
 
@@ -335,7 +339,9 @@
   (global-set-key (kbd "C-c m") 'erc-start-or-switch)
 
   :config
-  (add-to-list 'erc-modules 'erc-hl-nicks)
+  ; (add-to-list 'erc-modules 'erc-hl-nicks)
+  (use-package erc-hl-nicks)
+  (erc-hl-nicks-mode)
   (erc-autojoin-mode t)
   ;; check channels
   (erc-track-mode t)
@@ -398,7 +404,7 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; load global look of emacs
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "look.el")
+(load "look")
 
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -438,12 +444,6 @@
 
 
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org-journal configuration
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "journal.el")
-
-
-;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; To handle accents in html and tex files
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (load "accents.el")
@@ -451,7 +451,7 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybindings.el contains keybindings
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "keybindings.el")
+(load "keybindings")
 
 
 (custom-set-variables

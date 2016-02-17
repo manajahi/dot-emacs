@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun  3 17:26:26 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Tue Dec 29 11:47:17 2015 (+0100)
+;; Last-Updated: Wed Feb 17 23:13:24 2016 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 83
+;;     Update #: 84
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -29,7 +29,7 @@
 ;;; Code:
 
 ;;;; --------------------------- to have the journal ---------------------
-(require 'org-journal)
+
 
 ;;;; -------------------  multiple cursors stuff  ------------------
 

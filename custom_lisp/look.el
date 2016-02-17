@@ -6,9 +6,9 @@
 ;; Maintainer: Amine Najahi amine.najahi@univ-perp.fr
 ;; Created: Mon Jun 24 17:45:17 2013 (+0200)
 ;; Version: 
-;; Last-Updated: Mon Dec 28 00:37:03 2015 (+0100)
+;; Last-Updated: Wed Feb 17 22:28:13 2016 (+0100)
 ;;           By: Mohamed Amine Najahi
-;;     Update #: 66
+;;     Update #: 70
 ;; URL: http://perso.univ-perp.fr/mohamedamine.najahi
 ;; Keywords: 
 ;; Compatibility: 
@@ -43,12 +43,13 @@
 
   ;; Turn off the sroll bar at startup
   (scroll-bar-mode -1)
-  :config
   (use-package color-theme-solarized
-    :config
+    :init
     (load-theme 'solarized-dark t)
     ;; the following temporarily solves the problem of the background in solarized
-    (custom-set-faces (if (not window-system) '(default ((t (:background "nil")))))))
+    (custom-set-faces (if (not window-system) '(default ((t (:background "nil"))))))
+    )
+  :config
   )
 
 ;; stuff for using emacs in xterm
