@@ -7,13 +7,13 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "inf-sollya.el")			     ;;
-(load "sollya.el")				     ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (load "inf-sollya.el")			     ;;
+;; (load "sollya.el")				     ;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(load "gappa-mode.el")			    ;;
-(load "gappa-out.el")			    ;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (load "gappa-mode.el")			    ;;
+;; (load "gappa-out.el")			    ;;
 
 ;;;; -------------------  autoload gappa mode-----------------------------
 (add-to-list 'auto-mode-alist '("\\.gappa$" . gappa-mode)) 
@@ -30,8 +30,8 @@
 (setq package-enable-at-startup nil)
 
 ;;; Used to time the initialization process
-(require 'benchmark-init)
-(benchmark-init/activate)
+;; (require 'benchmark-init)
+;; (benchmark-init/activate)
 
 (defconst mohaminaj-packages
   '(
@@ -41,6 +41,7 @@
     anzu                                ; Mode line indicators for isearch
     auctex                              ; The one and only LaTeX environment
     auctex-latexmk                      ; latexmk support for AUCTeX
+    bbdb
     benchmark-init                      ; get init benchmarks
     browse-kill-ring                    ; Kill ring browser
     cmake-mode                          ; CMake files
@@ -64,11 +65,13 @@
     haskell-mode                        ; Haskell major modes
     helm                                ; Completion package
     inf-ruby                            ; Ruby interpreter in Emacs
+    lua-mode
     macrostep                           ; Interactively expand macros
     magit                               ; Git frontend
     markdown-mode                       ; Markdown major mode
     merlin                              ; OCaml completion engine
     multiple-cursors                    ; Multiple cursors
+    org-journal
     paradox                             ; Better package menu
     paredit                             ; Balanced parenthesis editing
     rainbow-delimiters                  ; Color delimiters by level
@@ -144,6 +147,7 @@
          ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
 	 ("C-x C-r" . helm-recentf)
+	 ("C-x C-f" . helm-find-files)
          ("C-x c SPC" . helm-all-mark-rings)))
 
 ;; anzu - number of search matches in modeline
@@ -228,9 +232,9 @@
 
 (use-package auto-complete
   :init
-  (progn (global-auto-complete-mode t)
+  (progn ;(global-auto-complete-mode t)
 	 (setq ac-auto-start t)
-	 (ac-flyspell-workaround)
+	 ;(ac-flyspell-workaround)
 
 ;;;; -------------------  flyspell --------------------------------------
 	 (add-hook 'text-mode-hook 'turn-on-flyspell)

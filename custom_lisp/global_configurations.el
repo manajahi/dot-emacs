@@ -124,7 +124,7 @@
 
 
 ;;;; --------------- 
-(yas-global-mode 1)
+;(yas-global-mode 1)
 
 
 ;;;; --------------- To change the frame's name -------
