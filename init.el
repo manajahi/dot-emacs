@@ -2,6 +2,11 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
+(let ((mw-cfg-file "//mathworks/hub/share/sbtools/emacs_setup.el"))
+  (if (file-readable-p mw-cfg-file)
+      ;; See: http://www-internal/hub/share/sbtools/develfaq/faq_emacs.html
+      (load-file mw-cfg-file)))
+
 (mapc (lambda (dir) (add-to-list 'load-path dir))
 	'("~/.emacs.d/custom_lisp" "~/.emacs.d/sollya-mode" "~/.emacs.d/gappa-mode"))
 
@@ -44,12 +49,15 @@
     bbdb
     benchmark-init                      ; get init benchmarks
     browse-kill-ring                    ; Kill ring browser
+    cider
     cmake-mode                          ; CMake files
     color-theme
     company                             ; Auto completion
     company-anaconda                    ; Company integration for Anaconda
     diff-hl                             ; Highlight VCS diffs in the fringe
     easy-kill                           ; Killing and marking on steroids
+    slime
+    ac-slime
     elisp-slime-nav                     ; Navigate to symbol definitions
     erc-hl-nicks
     flycheck			   ; and syntax errors
@@ -74,6 +82,7 @@
     org-journal
     paradox                             ; Better package menu
     paredit                             ; Balanced parenthesis editing
+    mic-paren                           ; show matching paren in the echo area
     rainbow-delimiters                  ; Color delimiters by level
     rainbow-mode                        ; Show colours as they are
     rtags
@@ -225,6 +234,17 @@
 	      ))
   )
 
+(use-package cider
+  :init
+  :config
+  (add-hook 'cider-mode-hook
+	    (lambda ()
+	      (paredit-mode 1)
+	      (rainbow-delimiters-mode 1)
+	      (eldoc-mode)
+	      ))
+  )
+
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -232,15 +252,16 @@
 
 (use-package auto-complete
   :init
-  (progn ;(global-auto-complete-mode t)
-	 (setq ac-auto-start t)
-	 ;(ac-flyspell-workaround)
+  (progn
+    (global-auto-complete-mode t)
+    (setq ac-auto-start t)
+					;(ac-flyspell-workaround)
 
 ;;;; -------------------  flyspell --------------------------------------
-	 (add-hook 'text-mode-hook 'turn-on-flyspell)
+    (add-hook 'text-mode-hook 'turn-on-flyspell)
 
 ;;;; ------  To switch between the english and french language  -------
-	 (global-set-key (kbd "<f8>")   'fd-switch-dictionary))
+    (global-set-key (kbd "<f8>")   'fd-switch-dictionary))
   )
 
 
@@ -366,6 +387,11 @@
     )
   )
 
+(use-package mic-paren
+  :config
+  (paren-activate)
+  )
+
 (use-package auctex
   :mode ("\\.tex\\'" . latex-mode)
   :init
@@ -472,8 +498,16 @@
      (output-dvi "xdvi")
      (output-pdf "Evince")
      (output-html "xdg-open"))))
+ '(custom-safe-themes
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+ '(git-commit-summary-max-length 72)
  '(gnuserv-program "/usr/lib/xemacs-21.0/i386-pc-linux/gnuserv")
  '(inhibit-startup-screen t)
+ '(package-selected-packages
+   (quote
+    (auctex visual-regexp use-package tuareg solarized-theme rtags rainbow-mode rainbow-delimiters paredit paradox org-journal multiple-cursors merlin markdown-mode magit macrostep inf-ruby helm guide-key google-this gitignore-mode gitconfig-mode gitattributes-mode git-timemachine ghci-completion flycheck-haskell flycheck-cask erc-hl-nicks elisp-slime-nav easy-kill diff-hl company-anaconda color-theme cmake-mode cider browse-kill-ring benchmark-init bbdb auctex-lua auctex-latexmk anzu ace-window ace-jump-mode)))
+ '(safe-local-variable-values (quote ((TeX-master . t))))
  '(virtualenv-root "/home/amine/Documents/tests/django/Firstblog/"))
 
 
@@ -482,6 +516,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;; '(default ((t (:background "nil"))))
  '(font-latex-sectioning-5-face ((((type tty pc) (class color) (background light)) (:foreground "cyan" :weight bold))))
  '(font-lock-function-name-face ((t (:foreground "color-21"))))
  '(gnus-cite-1 ((((class color) (background light)) (:foreground "cyan"))))

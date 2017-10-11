@@ -92,9 +92,8 @@
 
 ;; match parenthesis
 (show-paren-mode 1)
-
 ;; To tune match paren to show the matched area
-(setq show-paren-style 'mixed)
+(setq show-paren-style 'expression)
 
 ;; backup files creation is done in a unique directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
