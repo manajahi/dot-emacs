@@ -42,6 +42,8 @@
     diff-hl                             ; Highlight VCS diffs in the fringe
     dumb-jump                           ; Jump to definitions
     easy-kill                           ; Killing and marking on steroids
+    slime
+    ac-slime
     elisp-slime-nav                     ; Navigate to symbol definitions
     erc-hl-nicks
     flycheck			        ; and syntax errors
@@ -58,13 +60,16 @@
     helm                                ; Completion package
     highlight-parentheses
     inf-ruby                            ; Ruby interpreter in Emacs
+    lua-mode
     macrostep                           ; Interactively expand macros
     magit                               ; Git frontend
     markdown-mode                       ; Markdown major mode
     merlin                              ; OCaml completion engine
     multiple-cursors                    ; Multiple cursors
+    org-journal
     paradox                             ; Better package menu
     paredit                             ; Balanced parenthesis editing
+    mic-paren                           ; show matching paren in the echo area
     rainbow-delimiters                  ; Color delimiters by level
     rainbow-mode                        ; Show colours as they are
     rtags
@@ -159,6 +164,7 @@
          ("C-x c Y" . helm-yas-create-snippet-on-region)
          ("C-x c b" . my/helm-do-grep-book-notes)
 	 ("C-x C-r" . helm-recentf)
+	 ("C-x C-f" . helm-find-files)
          ("C-x c SPC" . helm-all-mark-rings)))
 
 ;; anzu - number of search matches in modeline
@@ -261,6 +267,17 @@
 	      ))
   )
 
+(use-package cider
+  :init
+  :config
+  (add-hook 'cider-mode-hook
+	    (lambda ()
+	      (paredit-mode 1)
+	      (rainbow-delimiters-mode 1)
+	      (eldoc-mode)
+	      ))
+  )
+
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -268,15 +285,16 @@
 
 (use-package auto-complete
   :init
-  (progn (global-auto-complete-mode t)
-	 (setq ac-auto-start t)
-	 (ac-flyspell-workaround)
+  (progn
+    (global-auto-complete-mode t)
+    (setq ac-auto-start t)
+					;(ac-flyspell-workaround)
 
 ;;;; -------------------  flyspell --------------------------------------
-	 (add-hook 'text-mode-hook 'turn-on-flyspell)
+    (add-hook 'text-mode-hook 'turn-on-flyspell)
 
 ;;;; ------  To switch between the english and french language  -------
-	 (global-set-key (kbd "<f8>")   'fd-switch-dictionary))
+    (global-set-key (kbd "<f8>")   'fd-switch-dictionary))
   )
 
 
@@ -350,6 +368,11 @@
   (progn
     (global-set-key (kbd "C-x g") 'magit-status)
     )
+  )
+
+(use-package mic-paren
+  :config
+  (paren-activate)
   )
 
 (use-package auctex
@@ -450,6 +473,12 @@
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; global configurations
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; replace yes-no questions by y-n questions
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Allows scroll to move to top or bottom when it hits it
+(setq scroll-error-top-bottom t)
+
 
 ;; allow to work with compressed etags ctags files
 (require 'jka-compr)
@@ -506,6 +535,10 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; match parenthesis
+(show-paren-mode 1)
+;; To tune match paren to show the matched area
+(setq show-paren-style 'expression)
 
 ;; backup files creation is done in a unique directory
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -988,6 +1021,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ ;; '(default ((t (:background "nil"))))
  '(font-latex-sectioning-5-face ((((type tty pc) (class color) (background light)) (:foreground "cyan" :weight bold))))
  '(font-lock-function-name-face ((t (:foreground "color-21"))))
  '(gnus-cite-1 ((((class color) (background light)) (:foreground "cyan"))))
