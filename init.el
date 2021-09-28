@@ -267,17 +267,6 @@
 	      ))
   )
 
-(use-package cider
-  :init
-  :config
-  (add-hook 'cider-mode-hook
-	    (lambda ()
-	      (paredit-mode 1)
-	      (rainbow-delimiters-mode 1)
-	      (eldoc-mode)
-	      ))
-  )
-
 (use-package flycheck
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -851,7 +840,6 @@
   "Begin each IELM prompt with a ParEdit parenthesis pair."
   (paredit-open-round))
 
-
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; To handle accents in html and tex files
 ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -864,6 +852,10 @@
 ;(global-set-key (kbd "C-h") 'delete-backward-char)
 ;; to avoid using backspace for words
 ;(global-set-key (kbd "M-h") 'backward-kill-word)
+
+;; compile command
+(bind-key* "C-c C-l" 'compile)
+(setq compile-command "qn tmm")
 
 ;; comment-region
 (global-unset-key (kbd "C-c c"))
@@ -1021,9 +1013,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- ;; '(default ((t (:background "nil"))))
  '(font-latex-sectioning-5-face ((((type tty pc) (class color) (background light)) (:foreground "cyan" :weight bold))))
- '(font-lock-function-name-face ((t (:foreground "color-21"))))
  '(gnus-cite-1 ((((class color) (background light)) (:foreground "cyan"))))
  '(hl-line ((t (:inherit highlight :background "#ffffff"))))
  '(message-header-subject ((((class color) (background light)) (:foreground "cyan" :weight bold))))
